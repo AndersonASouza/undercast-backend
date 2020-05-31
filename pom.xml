@@ -12,7 +12,7 @@
 	<artifactId>undercast</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>undercast</name>
-	<description>Backend to download podcasts</description>
+	<description>Backend search and find podcasts feed </description>
 
 	<repositories>
 		<repository>
