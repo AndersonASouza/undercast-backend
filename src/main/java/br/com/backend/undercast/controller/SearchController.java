@@ -1,8 +1,6 @@
 package br.com.backend.undercast.controller;
 
 import br.com.backend.undercast.dto.PodcastDTO;
-import br.com.backend.undercast.dto.ResultDTO;
-import br.com.backend.undercast.service.FeedService;
 import br.com.backend.undercast.service.SearchService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
