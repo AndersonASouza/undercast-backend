@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-@RestController("/br")
-@Api(value = "Feed controller")
-public class FeedController {
+@RestController
+@Api(value = "Rank controller")
+public class RankController {
     @Autowired
     public FeedService service;
 
     @CrossOrigin
-    @GetMapping("/feed")
+    @GetMapping("/rank")
     @ApiOperation(value = "Retorna os top podcasts do Brasil")
-    public ResponseEntity<List<ResultDTO>> getFeed(@RequestParam(required = true, defaultValue = "10", name = "rank") Integer top) {
+    public ResponseEntity<List<ResultDTO>> getRank(@RequestParam(required = true, defaultValue = "10", name = "rank") Integer top) {
         return ResponseEntity.ok().body(service.getTopBrazilFeed(top));
     }
 }
