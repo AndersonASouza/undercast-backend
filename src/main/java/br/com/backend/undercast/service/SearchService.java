@@ -11,4 +11,6 @@ public interface SearchService {
 
     public List<PodcastDTO> search(String stringQuery, Integer limit);
 
+    public List<PodcastDTO> search(String stringQuery, Integer limit, String country, int genreId);
+
 }

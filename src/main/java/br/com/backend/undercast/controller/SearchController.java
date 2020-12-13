@@ -25,8 +25,15 @@ public class SearchController {
     @GetMapping("/search")
     public ResponseEntity<List<PodcastDTO>> search(
         @RequestParam(required = true, name = "query") String searchString,
-        @RequestParam(required = false, defaultValue = "50", name = "limit") String limit){
-        return ResponseEntity.ok().body(service.search(searchString,Integer.valueOf(limit)));
+        @RequestParam(required = false, defaultValue = "50", name = "limit") String limit,
+        @RequestParam(required = false, defaultValue = "BR", name = "country") String country,
+        @RequestParam(required = false, name = "genreId") String genreId    ){
+        if (genreId!=null){
+            return ResponseEntity.ok().body(service.search(searchString,Integer.valueOf(limit), country, Integer.valueOf(genreId)));
+        }else{
+            return ResponseEntity.ok().body(service.search(searchString,Integer.valueOf(limit)));
+        }
+
     }
 
 }

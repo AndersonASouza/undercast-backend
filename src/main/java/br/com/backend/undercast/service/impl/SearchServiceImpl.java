@@ -52,4 +52,31 @@ public class SearchServiceImpl implements SearchService {
         return builder.toUriString();
     }
 
+    @Override
+    public List<PodcastDTO> search(String stringQuery, Integer limit, String country, int genreId) {
+        String url = getURLWithParams(stringQuery, limit, country, genreId);
+
+        try{
+            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode rootNode = mapper.readTree(response.getBody());
+            JsonNode dataNode = rootNode.at("/results");
+            return List.of(mapper.treeToValue(dataNode, PodcastDTO[].class));
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private String getURLWithParams(String stringQuery, Integer limit, String country, int genreId) {
+        stringQuery = stringQuery.replace(" ", "+");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(ITUNES_SEARCH_URL)
+                .queryParam("term", stringQuery)
+                .queryParam("entity", PODCAST)
+                .queryParam("limit", limit)
+                .queryParam("country", country)
+                .queryParam("genreId", genreId);
+        return builder.toUriString();
+    }
+
 }
