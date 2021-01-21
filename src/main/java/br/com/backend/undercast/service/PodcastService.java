@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface PodcastService {
 
-    public String getDownloadLink(String rssURL, int episode) throws MalformedURLException, InvalidFeedException, MalformedFeedException;
-
     public List<Episode> getEpisodes(String rssURL) throws MalformedURLException, InvalidFeedException, MalformedFeedException;
 
 }

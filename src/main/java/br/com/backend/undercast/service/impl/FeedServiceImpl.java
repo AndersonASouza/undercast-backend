@@ -1,6 +1,6 @@
 package br.com.backend.undercast.service.impl;
 
-import br.com.backend.undercast.dto.ResultDTO;
+import br.com.backend.undercast.dto.RankResultDTO;
 import br.com.backend.undercast.service.FeedService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,13 +19,13 @@ public class FeedServiceImpl implements FeedService {
     private RestTemplate restTemplate;
 
     @Override
-    public List<ResultDTO> getTopBrazilFeed(Integer top) {
+    public List<RankResultDTO> getTopBrazilFeed(Integer top) {
         try {
             ResponseEntity<String> response = restTemplate.getForEntity(ITUNES_RSS_FEED.replace("10",top.toString()), String.class);
             ObjectMapper mapper = new ObjectMapper();
             JsonNode rootNode = mapper.readTree(response.getBody());
             JsonNode dataNode = rootNode.at("/feed/results");
-            return List.of(mapper.treeToValue(dataNode, ResultDTO[].class));
+            return List.of(mapper.treeToValue(dataNode, RankResultDTO[].class));
         }catch (Exception e){
             e.printStackTrace();
         }

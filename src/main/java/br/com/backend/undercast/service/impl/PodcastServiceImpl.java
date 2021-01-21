@@ -17,14 +17,6 @@ import java.util.List;
 public class PodcastServiceImpl implements PodcastService {
 
     @Override
-    public String getDownloadLink(String rssURL, int episode) throws MalformedURLException, InvalidFeedException, MalformedFeedException {
-        Podcast podcast = new Podcast(new URL(rssURL));
-        Episode episodeSelected = podcast.getEpisodes().get(episode);
-        String url = episodeSelected.getEnclosure().getURL().toString();
-        return url;
-    }
-
-    @Override
     public List<Episode> getEpisodes(String rssURL) throws InvalidFeedException, MalformedFeedException, MalformedURLException {ListEpisodesResponseDTO response = new ListEpisodesResponseDTO();
         Podcast podcast = new Podcast(new URL(rssURL));
         return podcast.getEpisodes();

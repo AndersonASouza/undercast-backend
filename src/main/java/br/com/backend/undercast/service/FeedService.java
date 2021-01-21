@@ -1,11 +1,11 @@
 package br.com.backend.undercast.service;
 
-import br.com.backend.undercast.dto.ResultDTO;
+import br.com.backend.undercast.dto.RankResultDTO;
 
 import java.util.List;
 
 public interface FeedService {
 
-    public List<ResultDTO> getTopBrazilFeed(Integer top);
+    public List<RankResultDTO> getTopBrazilFeed(Integer top);
 
 }
